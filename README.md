@@ -39,7 +39,37 @@ numerical-linear-algebra-algorithms/
     └── plots/                  # Visualizations of complexity & execution time
 
 ```
+## Key Insights & Experiments
 
+The experiments/ and notebooks/ directories contain benchmarking tools that evaluate:
+1. The execution time and scaling behavior of the implemented algorithms.
+2. The computational trade-offs between Householder reflections and Givens rotations.
+3. The catastrophic performance degradation of Laplace expansion compared to Gaussian elimination for matrix determinants.
+
+## Installation & Usage
+
+To run this project locally, execute the following commands in your terminal:
+
+```bash
+# 1. Clone the repository
+git clone [https://github.com/AgapiKallinikou/numerical-linear-algebra-algorithms.git](https://github.com/AgapiKallinikou/numerical-linear-algebra-algorithms.git)
+cd numerical-linear-algebra-algorithms
+```
+# 2. Install the required dependencies
+```bash
+pip install -r requirements.txt
+```
+
+# 3. Run a benchmark experiment
+```bash
+python experiments/qr_benchmark.py
+```    
+## Purpose
+
+This project was developed to demonstrate a practical understanding of numerical linear algebra. It showcases the ability to translate rigorous mathematical proofs and matrix theory into efficient, benchmarked code, with an emphasis on real-world applicability in scientific computing and machine learning.
+
+
+    
 ## Academic Context & Author
 
 This project was developed as part of the **"Matrix Calculus"** course at the **National and Kapodistrian University of Athens (NKUA)**, Department of Mathematics.
