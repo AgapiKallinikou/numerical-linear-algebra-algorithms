@@ -61,14 +61,20 @@ Since $n \cdot (n - 1) \cdots 1 = n!$, the computational complexity of the Lapla
 
 ## 3. Execution Time Benchmarks (Theory vs Reality)
 
-To understand the practical implications of $\mathcal{O}(n^3)$ vs $\mathcal{O}(n!)$, assume a computer that executes 1 flop in $10^{-5}$ seconds. 
-Using Stirling's approximation for large factorials: $n! \approx \sqrt{2\pi n} (n/e)^n$.
+To understand the practical implications of **O(n³)** vs **O(n!)**, assume a computer that executes 1 flop in 10⁻⁵ seconds. 
+Using Stirling's approximation for large factorials: n! ≈ √(2πn) * (n/e)ⁿ.
 
-### ⚡ DetGEP ($\mathcal{O}(n^3)$)
-* **$n = 100$:** $\approx 3.33$ seconds
-* **$n = 1000$:** $\approx 55.5$ minutes
-* **$n = 5000$:** $\approx 4.8$ days
+### ⚡ DetGEP ( O(n³) )
+* **n = 100:** ≈ 3.33 seconds
+* **n = 1000:** ≈ 55.5 minutes
+* **n = 5000:** ≈ 4.8 days
 
+### 🐢 DetLaplace ( O(n!) )
+* **n = 12:** ≈ 1.33 hours
+* **n = 13:** ≈ 17.3 hours
+* **n = 100:** ≈ 9.32 × 10¹⁵² seconds *(Vastly exceeds the age of the universe, which is ≈ 4.3 × 10¹⁷ seconds)*.
+
+**Conclusion:** The mathematical elegance of Laplace expansion makes it a terrible algorithmic choice. It is realistically applicable only for very small matrices (n ≤ 11). For all practical engineering applications, factorization methods like GEP are mandatory.
 ### 🐢 DetLaplace ($\mathcal{O}(n!)$)
 * **$n = 12$:** $\approx 1.33$ hours
 * **$n = 13$:** $\approx 17.3$ hours
