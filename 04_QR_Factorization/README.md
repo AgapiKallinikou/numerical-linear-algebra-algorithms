@@ -50,8 +50,9 @@ $$Hy = y - 2v(v^T y)$$
 
 ### 2. Givens Rotations
 To zero out $n-1$ elements iteratively, we must apply $n-1$ individual Givens rotation matrices. Each rotation modifies two components of the vector ($y_i, y_j$):
+
 $$
-\begin{bmatrix} y'_i \\ y'_j \end{bmatrix} = \begin{bmatrix} c & s \\ -s & c \end{bmatrix} \begin{bmatrix} y_i \\ y_j \end{bmatrix}
+\begin{bmatrix} y'_i \\\\ y'_j \end{bmatrix} = \begin{bmatrix} c & s \\\\ -s & c \end{bmatrix} \begin{bmatrix} y_i \\\\ y_j \end{bmatrix}
 $$
 * Each rotation requires 4 multiplications.
 * Applying $n-1$ rotations requires $4(n-1)$ multiplications.
