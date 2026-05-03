@@ -20,3 +20,17 @@ The algorithm dynamically adapts to the dimensions of the input matrix $A \in \m
 
 ## 🚀 Application
 By utilizing implicit Householder vectors ($v$), this implementation strictly avoids the explicit construction of the $H$ matrices, favoring computationally efficient vector outer products instead.
+
+## ⚠️ The Cost of Explicitly Forming Q
+
+In practical High-Performance Computing (HPC) applications, explicitly forming the orthogonal matrix $Q$ is often avoided. $Q$ is implicitly defined as the product of Householder transformations:
+
+$$Q = H_1 H_2 \dots H_{n-1}$$
+
+Our implementation explicitly accumulates $Q$ for demonstration and verification purposes. However, it is mathematically proven that if the explicit construction of $Q$ is required, the most efficient method is backward accumulation ($Q_k = H_k Q_{k+1}$). 
+
+Applying the transformation $H_k = I - 2v_kv_k^T$ to the trailing submatrix requires approximately $2(n - k)^2$ operations. Summing this over all $n$ steps yields the asymptotic extra cost:
+
+$$\text{Extra Flops} \approx \sum_{k=1}^{n} 2(n - k)^2 = 2 \sum_{j=1}^{n} j^2 \approx \frac{2}{3}n^3$$
+
+**Conclusion:** Explicitly forming $Q$ adds a massive $\frac{2}{3}n^3$ flops to the computational overhead. In memory-constrained or performance-critical environments (like solving Least Squares problems), it is significantly more efficient to store only the normalized Householder vectors $v_k$ and apply them dynamically when multiplying $Q$ with another vector or matrix.
