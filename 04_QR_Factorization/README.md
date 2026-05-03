@@ -34,3 +34,27 @@ Applying the transformation $H_k = I - 2v_kv_k^T$ to the trailing submatrix requ
 $$\text{Extra Flops} \approx \sum_{k=1}^{n} 2(n - k)^2 = 2 \sum_{j=1}^{n} j^2 \approx \frac{2}{3}n^3$$
 
 **Conclusion:** Explicitly forming $Q$ adds a massive $\frac{2}{3}n^3$ flops to the computational overhead. In memory-constrained or performance-critical environments (like solving Least Squares problems), it is significantly more efficient to store only the normalized Householder vectors $v_k$ and apply them dynamically when multiplying $Q$ with another vector or matrix.
+
+## ⚖️ Householder vs. Givens Rotations: A Complexity Comparison
+
+When computing the QR factorization, an alternative to Householder reflections is the use of **Givens Rotations**. However, Householder transformations are generally preferred for dense matrices due to computational efficiency. 
+
+To introduce zeros into a vector $x \in \mathbb{R}^n$ such that it becomes a multiple of $e_1$, the complexity differs significantly:
+
+### 1. Householder Reflections
+A Householder transformation is defined as $H = I - 2vv^T$. Applying $H$ to a generic vector $y \in \mathbb{R}^n$:
+$$Hy = y - 2v(v^T y)$$
+* Inner product $v^T y$: $n$ multiplications.
+* Scalar multiplication $2(v^T y)v$: $n$ multiplications.
+* **Total Cost:** $\approx 2n$ flops.
+
+### 2. Givens Rotations
+To zero out $n-1$ elements iteratively, we must apply $n-1$ individual Givens rotation matrices. Each rotation modifies two components of the vector ($y_i, y_j$):
+$$
+\begin{bmatrix} y'_i \\ y'_j \end{bmatrix} = \begin{bmatrix} c & s \\ -s & c \end{bmatrix} \begin{bmatrix} y_i \\ y_j \end{bmatrix}
+$$
+* Each rotation requires 4 multiplications.
+* Applying $n-1$ rotations requires $4(n-1)$ multiplications.
+* **Total Cost:** $\approx 4n$ flops.
+
+**Conclusion:** Utilizing Givens rotations to annihilate elements in a dense column requires strictly **twice as many multiplications** as Householder reflections ($\approx 4n$ vs $\approx 2n$). Givens rotations are typically reserved for highly sparse or specifically structured matrices (like banded matrices) where they can target individual elements without disturbing existing zeros.
