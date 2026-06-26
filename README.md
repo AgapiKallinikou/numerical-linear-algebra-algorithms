@@ -1,11 +1,12 @@
 # Numerical Linear Algebra & Algorithmic Complexity
 
-A comprehensive collection of Numerical Linear Algebra algorithms implemented from scratch in Python. This repository bridges the gap between pure mathematical theory and High-Performance Computing (HPC), focusing on algorithmic complexity, memory optimization, matrix factorizations, and numerical stability.
+A comprehensive collection of Numerical Linear Algebra algorithms implemented from scratch. This repository bridges the gap between pure mathematical theory and High-Performance Computing (HPC), focusing on algorithmic complexity, memory optimization, matrix factorizations, numerical stability, and advanced data compression.
 
 ## 📌 Key Highlights
 * **Algorithmic Efficiency:** Empirical benchmarks and theoretical proofs comparing polynomial **O(n³)** vs factorial **O(n!)** time complexities.
 * **Exploiting Matrix Structure:** Highly optimized **O(N)** and **O(N²)** implementations for Tridiagonal and Hessenberg matrices.
 * **Orthogonal Transformations:** Detailed computational cost comparisons between Householder Reflections and Givens Rotations.
+* **Low-Rank Matrix Approximations:** Practical application of Singular Value Decomposition (SVD) to achieve lossy digital image compression and dimensionality reduction.
 * **Robust Edge-Case Handling:** Dynamic shape adaptation and early-stopping mechanisms for non-square and rank-deficient matrices.
 
 ---
@@ -26,20 +27,19 @@ A comprehensive collection of Numerical Linear Algebra algorithms implemented fr
 * **`05_Givens_Rotations/`**
   Implementation of right-side matrix multiplication and full QR factorization using Givens Rotations. Features a complexity analysis demonstrating why Givens is ideal for sparse matrices but costs strictly twice as much as Householder for dense systems.
 
-### Part 3: Computational Complexity
+### Part 3: Computational Complexity & Dimension Reduction
 * **`06_Determinant_Complexity/`**
-  A deep dive into the computational costs of determinant calculations. Includes a Python benchmark comparing Gaussian Elimination with Partial Pivoting (**O(n³)**) against the recursive Laplace Expansion (**O(n!)**). 
-  * *Fun Fact derived from the analysis: For a 100x100 matrix, the Laplace method would take ≈ 9.32 × 10¹⁵² seconds (vastly exceeding the age of the universe), while GEP finishes in ≈ 3.33 seconds.*
+  A deep dive into the computational costs of determinant calculations. Includes a Python benchmark comparing Gaussian Elimination with Partial Pivoting (**O(n³)**) against the recursive Laplace Expansion (**O(n!)**).  
+  * *Fun Fact: For a 100x100 matrix, the Laplace method would take ≈ 9.32 × 10¹⁵² seconds (vastly exceeding the age of the universe), while GEP finishes in ≈ 3.33 seconds.*
+* **`07_SVD_Image_Compression/`** 
+  Advanced module applying Singular Value Decomposition to multi-channel RGB data. Evaluates low-rank truncations ($A_k = \sum \sigma_i u_i v_i^T$) to perform lossy image compression, showcasing why SVD scalability becomes exponentially more efficient as pixel resolution grows quadratically.
 
 ---
 
 ## 🛠️ Tech Stack & Methodologies
-* **Language:** Python 3.x
-* **Libraries:** NumPy (Vectorized operations, BLAS-style computing)
-* **Concepts:** Big-O Complexity, Flop Counting, Vectorization, Numerical Stability, Memory Footprint Optimization.
-
----
-
+* **Languages:** Python 3.x, Julia (High-Performance Scientific Computing)
+* **Libraries:** NumPy (Vectorized operations, BLAS-style computing), LinearAlgebra.jl, Images.jl.
+* **Concepts:** Big-O Complexity, Flop Counting, Low-Rank Approximation, SVD Truncation, Vectorization, Numerical Stability, Memory Footprint Optimization.
 ## 🎓 Academic Context & Author
 
 This project was developed as part of the coursework at the **National and Kapodistrian University of Athens (NKUA)**.
